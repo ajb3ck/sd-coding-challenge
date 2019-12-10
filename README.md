@@ -23,4 +23,9 @@ Query Parameters can be used to filter the Launchpads returned by the API.
 | `fullName` | No       | Any String      | The Launchpads returned are filtered by Launchpad Name                                    |
 | `id`       | No       | Any String      | The Launchpads are filtered by Launchpad Id                                               |
 
-##
+### Deploy it yourself
+
+1. Initialize AWS Credentials for use with Terraform
+2. Change directories to `./js-lambda-api-gateway/buildDeploy`
+3. Execute the script `./buildDeploy.sh
+   - This will build the lambda function and execute Terraform Apply
