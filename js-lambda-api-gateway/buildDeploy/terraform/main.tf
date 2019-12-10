@@ -73,3 +73,21 @@ resource "aws_lambda_function" "launchpads" {
   depends_on = ["aws_iam_role_policy_attachment.lambda_xray"]
 }
 
+resource "aws_api_gateway_rest_api" "api" {
+  name        = "SpaceXProxy"
+  description = "SpaceX Launchpads Proxy API"
+}
+
+resource "aws_api_gateway_resource" "launchpads" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  parent_id   = aws_api_gateway_rest_api.api.root_resource_id
+  path_part   = "launchpads"
+}
+
+module "GET_launchpads" {
+  source               = "./modules/apiLambdaProxy"
+  api_id               = aws_api_gateway_rest_api.api.id
+  resource_path        = aws_api_gateway_resource.launchpads.path
+  enable_cors          = true
+  lambda_function_name = aws_lambda_function.launchpads.function_name
+}
