@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "rm -rf && babel src -d dist",
-    "package": "rm -rf ./dist && webpack && zip -r -j dist.zip ./dist/*",
+    "package": "npm test && rm -rf ./dist && webpack && zip -r -j dist.zip ./dist/*",
     "test": "jest"
   },
   "devDependencies": {

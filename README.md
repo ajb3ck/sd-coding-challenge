@@ -8,6 +8,14 @@ Various Solutions for a coding challenge.
 
 This pattern uses an API Gateway and sends inbound requests to a single lambda function.
 
+Demo API Base URL: https://sd-demo.616a.systems
+
+### Project Structure
+
+- Base Path: `./js-lambda-api-gateway`
+- Terraform Path: `./js-lambda-api-gateway/buildDeploy/terraform`
+- Lambda Path: `./js-lambda-api-gateway/lambdas/launchpads`
+
 ### API Usage
 
 #### GET /launchpads
@@ -28,6 +36,5 @@ Query Parameters can be used to filter the Launchpads returned by the API.
 _Note: Terraform 0.12.x is required_
 
 1. Initialize AWS Credentials for use with Terraform
-2. Change directories to `./js-lambda-api-gateway/buildDeploy`
-3. Execute the script `./buildDeploy.sh
-   - This will build the lambda function and execute Terraform Apply
+2. Execute the script `./js-lambda-api-gateway/buildDeploy/buildDeploy.sh`
+   - This will execute lambda tests, build the lambda function, and execute Terraform Apply

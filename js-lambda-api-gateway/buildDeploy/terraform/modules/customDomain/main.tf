@@ -31,9 +31,9 @@ data "aws_acm_certificate" "wildcard" {
 }
 
 resource "aws_api_gateway_domain_name" "custom" {
-  count           = var.enabled ? 1 : 0
-  certificate_arn = data.aws_acm_certificate.wildcard[0].arn
-  domain_name     = "${var.sub_domain}.${var.base_domain}"
+  count                    = var.enabled ? 1 : 0
+  regional_certificate_arn = data.aws_acm_certificate.wildcard[0].arn
+  domain_name              = "${var.sub_domain}.${var.base_domain}"
   endpoint_configuration {
     types = ["REGIONAL"]
   }
