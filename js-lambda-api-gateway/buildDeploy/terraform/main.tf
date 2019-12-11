@@ -76,6 +76,9 @@ resource "aws_lambda_function" "launchpads" {
 resource "aws_api_gateway_rest_api" "api" {
   name        = "SpaceXProxy"
   description = "SpaceX Launchpads Proxy API"
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
 }
 
 resource "aws_api_gateway_resource" "launchpads" {
@@ -88,6 +91,5 @@ module "GET_launchpads" {
   source               = "./modules/apiLambdaProxy"
   api_id               = aws_api_gateway_rest_api.api.id
   resource_path        = aws_api_gateway_resource.launchpads.path
-  enable_cors          = true
   lambda_function_name = aws_lambda_function.launchpads.function_name
 }

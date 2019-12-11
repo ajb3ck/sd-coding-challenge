@@ -71,7 +71,7 @@ resource "aws_api_gateway_integration_response" "options" {
 
 output "cors_method" {
   value = {
-    id          = var.enable_CORS ? aws_api_gateway_method.options.id : ""
-    http_method = var.enable_CORS ? aws_api_gateway_method.options.http_method : ""
+    id          = var.enable_CORS ? element(concat(aws_api_gateway_method.options.*.id, list("")), 0) : ""
+    http_method = var.enable_CORS ? element(concat(aws_api_gateway_method.options.*.http_method, list("")), 0) : ""
   }
 }

@@ -12,7 +12,8 @@ variable "http_methods" {
 }
 
 variable "enable_cors" {
-  type = bool
+  type    = bool
+  default = true
 }
 
 variable "lambda_function_name" {
@@ -61,4 +62,12 @@ resource "aws_lambda_permission" "apigw_permission" {
   action        = "lambda:InvokeFunction"
   principal     = "apigateway.amazonaws.com"
   source_arn    = "arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.api_id}/*/${aws_api_gateway_method.method[count.index].http_method}${data.aws_api_gateway_resource.resource.path}"
+}
+
+module "CORS" {
+  source          = "../apiCORS"
+  api_id          = var.api_id
+  resource_id     = data.aws_api_gateway_resource.resource.id
+  enable_CORS     = var.enable_cors
+  allowed_methods = var.http_methods
 }
