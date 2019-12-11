@@ -33,7 +33,11 @@ Query Parameters can be used to filter the Launchpads returned by the API.
 
 ### Deploy it yourself
 
-_Note: Terraform 0.12.x is required_
+**Prerequisites**
+
+- BASH Shell (Scripts Tested on macOS)
+- Terraform 0.12.x
+- AWS Account Credentials Configured
 
 1. Initialize AWS Credentials for use with Terraform
 2. Execute the script `./js-lambda-api-gateway/buildDeploy/buildDeploy.sh`
