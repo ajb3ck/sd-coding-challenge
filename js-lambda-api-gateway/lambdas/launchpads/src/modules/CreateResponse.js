@@ -23,7 +23,7 @@ export function CreateResponse({
     }
 
     if (match === 'any') {
-      return checkValue(v, status, 'Launchpad Status') || checkValue(v, fullName, 'Launchpad Name') || checkValue(v, id, 'Launchpad Id');
+      return checkValue(v, status, 'Launchpad Status', true) || checkValue(v, fullName, 'Launchpad Name', true) || checkValue(v, id, 'Launchpad Id', true);
     }
 
     return true;
@@ -76,9 +76,9 @@ export function CreateResponse({
     If the desired value is undefined, true is returned
   @returns {boolean}
 */
-function checkValue(value, desired, key) {
+function checkValue(value, desired, key, matchAny = false) {
   if (desired === undefined) {
-    return true;
+    return true && !matchAny;
   }
 
   if (desired === value[key]) {
