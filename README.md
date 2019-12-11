@@ -80,6 +80,60 @@ Query Parameters can be used to filter the Launchpads returned by the API.
 | `fullName` | No       | Any String      | The Launchpads returned are filtered by Launchpad Name                                    |
 | `id`       | No       | Any String      | The Launchpads are filtered by Launchpad Id                                               |
 
+**Sample Request**
+
+```bash
+http GET "https://sd-demo.616a.systems/launchpads"
+```
+
+**Sample Response**
+
+```
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 762
+Content-Type: application/json
+Date: Wed, 11 Dec 2019 13:56:19 GMT
+X-Amzn-Trace-Id: Root=1-5df0f583-2cf2c4e4d4673426d281302e
+x-amz-apigw-id: EitMiGYaoAMFrKA=
+x-amzn-RequestId: c068ec69-7f29-4409-bbc2-461327dae46c
+
+{
+    "Launchpads": [
+        {
+            "Launchpad Id": "vafb_slc_4e",
+            "Launchpad Name": "Vandenberg Air Force Base Space Launch Complex 4E",
+            "Launchpad Status": "active"
+        },
+        {
+            "Launchpad Id": "ccafs_slc_40",
+            "Launchpad Name": "Cape Canaveral Air Force Station Space Launch Complex 40",
+            "Launchpad Status": "active"
+        },
+        {
+            "Launchpad Id": "stls",
+            "Launchpad Name": "SpaceX South Texas Launch Site",
+            "Launchpad Status": "under construction"
+        },
+        {
+            "Launchpad Id": "kwajalein_atoll",
+            "Launchpad Name": "Kwajalein Atoll Omelek Island",
+            "Launchpad Status": "retired"
+        },
+        {
+            "Launchpad Id": "ksc_lc_39a",
+            "Launchpad Name": "Kennedy Space Center Historic Launch Complex 39A",
+            "Launchpad Status": "active"
+        },
+        {
+            "Launchpad Id": "vafb_slc_3w",
+            "Launchpad Name": "Vandenberg Air Force Base Space Launch Complex 3W",
+            "Launchpad Status": "retired"
+        }
+    ]
+}
+```
+
 ### Deploy it yourself
 
 **Prerequisites**
