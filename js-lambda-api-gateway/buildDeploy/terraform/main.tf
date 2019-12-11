@@ -93,3 +93,49 @@ module "GET_launchpads" {
   resource_path        = aws_api_gateway_resource.launchpads.path
   lambda_function_name = aws_lambda_function.launchpads.function_name
 }
+
+resource "random_id" "deployment_id" {
+  keepers = {
+    date = timestamp()
+  }
+
+  byte_length = 4
+}
+
+resource "aws_api_gateway_deployment" "auto" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  description = "Auto Deployment ${random_id.deployment_id.hex}"
+  depends_on  = ["module.GET_launchpads"]
+}
+
+resource "aws_api_gateway_stage" "liveStage" {
+  rest_api_id          = aws_api_gateway_rest_api.api.id
+  stage_name           = "live"
+  deployment_id        = aws_api_gateway_deployment.auto.id
+  xray_tracing_enabled = true
+  depends_on           = ["aws_cloudwatch_log_group.api_exec_logs"]
+}
+
+resource "aws_cloudwatch_log_group" "api_exec_logs" {
+  name              = "API-Gateway-Execution-Logs_${aws_api_gateway_rest_api.api.id}/live"
+  retention_in_days = 3
+}
+
+resource "aws_api_gateway_method_settings" "liveStage" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  stage_name  = aws_api_gateway_stage.liveStage.stage_name
+  method_path = "*/*"
+
+  settings {
+    metrics_enabled = true
+    logging_level   = "INFO"
+  }
+}
+
+module "custom_domain" {
+  source      = "./modules/customDomain"
+  enabled     = var.enable_custom_domain
+  base_domain = var.base_domain
+  sub_domain  = var.sub_domain
+  api_id      = aws_api_gateway_rest_api.api.id
+}

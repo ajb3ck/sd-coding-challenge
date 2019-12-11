@@ -6,3 +6,4 @@ lambdaPackages
 dist
 *.tfstate
 *.tfstate*
+terraform.tfvars

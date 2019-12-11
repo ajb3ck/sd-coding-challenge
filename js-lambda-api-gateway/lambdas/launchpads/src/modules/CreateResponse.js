@@ -29,6 +29,11 @@ export function CreateResponse({
     return true;
   });
 
+  const response = {
+    statusCode,
+    body: JSON.stringify({ Launchpads }),
+  };
+
   if (match === 'all' || match === 'any') {
     Logger.Info('Results Filtered', {
       match,
@@ -62,11 +67,6 @@ export function CreateResponse({
 
     return response;
   }
-
-  const response = {
-    statusCode,
-    body: JSON.stringify({ Launchpads }),
-  };
 
   return response;
 }

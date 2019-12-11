@@ -6,7 +6,7 @@ async function handler(event, context) {
   // Configure Logger ENV Variables, ENV Variables are used instead of Global Variables to ensure thread safety
   process.env.requestId = event.requestContext.requestId;
   process.env.requestTimeEpoch = event.requestContext.requestTimeEpoch;
-  process.env.OutputLogLevel = event.headers['api-debug'] ? 'DEBUG' : 'WARNING';
+  process.env.OutputLogLevel = event.headers !== null && event.headers['api-debug'] ? 'DEBUG' : 'WARNING';
 
   // Log out the inputted Lambda Event and Context
   Logger.Info('Lambda Event and Context Data', { event, context });
@@ -21,7 +21,7 @@ async function handler(event, context) {
   // Create Response
   const {
     match, status, id, fullName,
-  } = event.queryStringParameters;
+  } = (event.queryStringParameters !== null && event.queryStringParameters) || {};
 
   const response = CreateResponse({
     launchPadData: launchPadData.body, match, status, id, fullName,
