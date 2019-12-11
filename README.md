@@ -15,7 +15,7 @@ Demo API Base URL: https://sd-demo.616a.systems
 _Note: CLI http tool here: https://httpie.org_
 
 ```bash
-http GET "https://sd-demo.616a.systems/launchpads"
+http GET "https://sd-demo.616a.systems/launchpads?status=active"
 ```
 
 **Sample Response**
@@ -23,12 +23,12 @@ http GET "https://sd-demo.616a.systems/launchpads"
 ```
 HTTP/1.1 200 OK
 Connection: keep-alive
-Content-Length: 762
+Content-Length: 406
 Content-Type: application/json
-Date: Wed, 11 Dec 2019 13:51:44 GMT
-X-Amzn-Trace-Id: Root=1-5df0f46f-653e356b626523894a9c8b73
-x-amz-apigw-id: EishdHu5oAMFTNw=
-x-amzn-RequestId: 331bb641-c7ab-4d4f-9c40-6043e41c33e0
+Date: Wed, 11 Dec 2019 13:54:43 GMT
+X-Amzn-Trace-Id: Root=1-5df0f523-92d491c7780655d2572a4565
+x-amz-apigw-id: Eis9jH_oIAMFjSQ=
+x-amzn-RequestId: 61c5e9ab-5e26-4646-aa8a-55ba286badbb
 
 {
     "Launchpads": [
@@ -43,24 +43,9 @@ x-amzn-RequestId: 331bb641-c7ab-4d4f-9c40-6043e41c33e0
             "Launchpad Status": "active"
         },
         {
-            "Launchpad Id": "stls",
-            "Launchpad Name": "SpaceX South Texas Launch Site",
-            "Launchpad Status": "under construction"
-        },
-        {
-            "Launchpad Id": "kwajalein_atoll",
-            "Launchpad Name": "Kwajalein Atoll Omelek Island",
-            "Launchpad Status": "retired"
-        },
-        {
             "Launchpad Id": "ksc_lc_39a",
             "Launchpad Name": "Kennedy Space Center Historic Launch Complex 39A",
             "Launchpad Status": "active"
-        },
-        {
-            "Launchpad Id": "vafb_slc_3w",
-            "Launchpad Name": "Vandenberg Air Force Base Space Launch Complex 3W",
-            "Launchpad Status": "retired"
         }
     ]
 }
